@@ -1,3 +1,5 @@
+from docx import Document
+from gdrive_upload import upload_to_drive
 from dotenv import load_dotenv
 load_dotenv()
 import logging
