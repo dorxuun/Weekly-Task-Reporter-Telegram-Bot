@@ -22,7 +22,7 @@ Telegram üzerinden haftalık rapor toplar, Google Gemini ile özetler ve kullan
    > Google anahtarı tanımlanmazsa bot yine çalışır, ancak özet basit metin olarak döner.
 3. Botu başlatın:
    ```bash
-   python bots/weekly_report_bot.py
+   python telegram_bot.py
    ```
 4. Telegram'da botunuza `/start` yazın ve gelen soruları sırayla yanıtlayın.
 
