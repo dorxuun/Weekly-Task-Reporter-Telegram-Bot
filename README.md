@@ -17,7 +17,7 @@ Telegram üzerinden haftalık rapor toplar, Google Gemini ile özetler ve kullan
 2. Gerekli ortam değişkenlerini tanımlayın (örnek `.env` içeriği):
    ```bash
    export TELEGRAM_BOT_TOKEN="<telegram-bot-token>"
-   export GOOGLE_API_KEY="<gemini-api-key>"
+   export GOOGLE_GEMINI_API_KEY="<gemini-api-key>"
    ```
    > Google anahtarı tanımlanmazsa bot yine çalışır, ancak özet basit metin olarak döner.
 3. Botu başlatın:
