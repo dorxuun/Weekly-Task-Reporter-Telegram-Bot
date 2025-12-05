@@ -89,7 +89,7 @@ async def summarize_and_finish(update: Update, context: ContextTypes.DEFAULT_TYP
     prompt = build_summary_prompt(context.user_data)
 
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content(prompt)
         summary = response.text.strip() if response and response.text else "Özet oluşturulamadı."
     except Exception as exc:  # pylint: disable=broad-except
