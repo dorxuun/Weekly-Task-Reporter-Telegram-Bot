@@ -7,7 +7,7 @@ Telegram üzerinden kullanıcıdan haftalık iş bilgilerini toplayan ve Google 
 ## 🚀 Özellikler
 - Tarih aralığı, yapılan işler, tamamlananlar, gelecek hafta planı gibi bilgileri toplar.
 - Google Gemini ile **madde madde profesyonel haftalık rapor** üretir.
-- \`python-telegram-bot\` (v20) ile tamamen **asenkron** çalışır.
+- `python-telegram-bot` (v20) ile tamamen **asenkron** çalışır.
 - Kolay kurulum, kolay özelleştirme.
 
 ---
@@ -22,26 +22,26 @@ Telegram üzerinden kullanıcıdan haftalık iş bilgilerini toplayan ve Google 
 ## ⚙️ Kurulum
 
 ### 1. Sanal ortam oluştur & bağımlılıkları kur
-\`\`\`bash
+```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-\`\`\`
+```
 
 ### 2. Ortam değişkenlerini tanımla
-\`\`\`bash
+```bash
 export TELEGRAM_BOT_TOKEN="<telegram-bot-token>"
 export GOOGLE_GEMINI_API_KEY="<gemini-api-key>"
-\`\`\`
+```
 
 > API key girilmezse bot çalışır ama özet kısmı normal metin olarak döner.
 
 ### 3. Botu başlat
-\`\`\`bash
+```bash
 python telegram_bot.py
-\`\`\`
+```
 
-### 4. Telegram’da \`/start\` yaz
+### 4. Telegram’da `/start` yaz
 Bot seni sırayla yönlendirecek.
 
 ---
@@ -59,23 +59,23 @@ Bot seni sırayla yönlendirecek.
 ## 🛠 Özelleştirme
 
 ### Soruları değiştirmek istiyorsan:
-\`telegram_bot.py\` içindeki \`ConversationHandler\` akışını düzenle.
+`telegram_bot.py` içindeki `ConversationHandler` akışını düzenle.
 
 ### Özet biçimini değiştirmek istiyorsan:
 Gemini’ye gönderilen prompt’u düzenle:
-\`\`\`python
+```python
 _build_prompt()
-\`\`\`
+```
 
 ---
 
 ## 👨‍💻 Teknoloji Notları
-- Bot \`python-telegram-bot\` v20 ile async mimaride çalışır.
+- Bot `python-telegram-bot` v20 ile async mimaride çalışır.
 - Varsayılan model: **gemini-2.5-flash**
 - Modeli değiştirmek için:
-\`\`\`python
+```python
 model = genai.GenerativeModel("gemini-2.5-flash")
-\`\`\`
+```
 
 ---
 
