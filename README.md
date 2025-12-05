@@ -1,6 +1,3 @@
-<<<<<<< ours
-# Weekly-Task-Reporter-Telegram-Bot
-=======
 # Haftalık Raporlayıcı Telegram Botu
 
 Telegram üzerinden haftalık rapor toplar, Google Gemini ile özetler ve kullanıcıya sunar.
