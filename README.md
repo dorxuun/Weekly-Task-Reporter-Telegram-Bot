@@ -1,83 +1,140 @@
-# 📝 Haftalık Raporlayıcı Telegram Botu
+# 🤖 Haftalık Raporlayıcı Telegram Botu
 
-Telegram üzerinden kullanıcıdan haftalık iş bilgilerini toplayan ve Google Gemini’nin **gemini-2.5-flash** modeliyle özetleyen bir raporlama botudur.
+Bu proje, Telegram üzerinden haftalık rapor verilerini toplayan, **Google Gemini (2.5 Flash)** ile özetleyen, oluşan özeti **DOCX dosyasına dönüştürüp Google Drive’a otomatik yükleyen** bir bottur.
 
 ---
 
 ## 🚀 Özellikler
-- Tarih aralığı, yapılan işler, tamamlananlar, gelecek hafta planı gibi bilgileri toplar.
-- Google Gemini ile **madde madde profesyonel haftalık rapor** üretir.
-- `python-telegram-bot` (v20) ile tamamen **asenkron** çalışır.
-- Kolay kurulum, kolay özelleştirme.
+
+- ✅ Telegram üzerinden adım adım haftalık rapor toplar  
+- ✅ Google Gemini 2.5 Flash ile otomatik özet çıkarır  
+- ✅ Sadece **Gemini özetini içeren DOCX** oluşturur  
+- ✅ DOCX dosyasını **Google Drive’a otomatik yükler**  
+- ✅ Drive linkini kullanıcıya Telegram’dan gönderir  
+- ✅ Asenkron ve hızlı çalışır  
 
 ---
 
-## 📦 Gereksinimler
+## 🛠 Gereksinimler
+
 - Python **3.10+**
-- Telegram bot token (BotFather ile alınır)
-- Google Gemini API key (https://aistudio.google.com)
+- Telegram Bot Token
+- Google Gemini API Key
+- Google Drive API için `credentials.json`
 
 ---
 
-## ⚙️ Kurulum
+## 📦 Kurulum
 
-### 1. Sanal ortam oluştur & bağımlılıkları kur
+### 1️⃣ Projeyi klonla
+```bash
+git clone https://github.com/dorxuun/Weekly-Task-Reporter-Telegram-Bot.git
+cd Weekly-Task-Reporter-Telegram-Bot
+```
+
+### 2️⃣ Sanal ortam oluştur ve aktif et
 ```bash
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate   # Mac / Linux
+```
+
+### 3️⃣ Gerekli kütüphaneleri kur
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Ortam değişkenlerini tanımla
-```bash
-export TELEGRAM_BOT_TOKEN="<telegram-bot-token>"
-export GOOGLE_GEMINI_API_KEY="<gemini-api-key>"
+---
+
+## 🔐 Ortam Değişkenleri (.env)
+
+Proje kök dizinine `.env` dosyası oluştur ve şunları yaz:
+
+```env
+TELEGRAM_BOT_TOKEN=BURAYA_TELEGRAM_TOKEN
+GOOGLE_GEMINI_API_KEY=BURAYA_GEMINI_API_KEY
 ```
 
-> API key girilmezse bot çalışır ama özet kısmı normal metin olarak döner.
+---
 
-### 3. Botu başlat
+## ☁️ Google Drive Bağlantısı
+
+1. Google Cloud Console’dan **OAuth istemcisi oluştur**
+2. `credentials.json` dosyasını proje kök dizinine koy
+3. Bot ilk çalıştırıldığında tarayıcı açılır ve Google hesabından izin ister
+4. Otomatik olarak `token.json` oluşturulur (**bu dosya gitignore’dadır, GitHub’a gitmez**)
+
+---
+
+## ▶️ Botu Çalıştırma
+
 ```bash
 python telegram_bot.py
 ```
 
-### 4. Telegram’da `/start` yaz
-Bot seni sırayla yönlendirecek.
+Telegram’da:
 
----
-
-## 🔄 Çalışma Akışı
-1. Bot tarih aralığını sorar.
-2. Bu hafta yapılan işleri alır.
-3. Tamamlanan görevleri alır.
-4. Gelecek hafta planını ister.
-5. (Eğer kodda aktifse) risk/engel bilgisi alır.
-6. Gemini ile **4–6 maddelik profesyonel özet** üretir.
-
----
-
-## 🛠 Özelleştirme
-
-### Soruları değiştirmek istiyorsan:
-`telegram_bot.py` içindeki `ConversationHandler` akışını düzenle.
-
-### Özet biçimini değiştirmek istiyorsan:
-Gemini’ye gönderilen prompt’u düzenle:
-```python
-_build_prompt()
+```
+/start
 ```
 
 ---
 
-## 👨‍💻 Teknoloji Notları
-- Bot `python-telegram-bot` v20 ile async mimaride çalışır.
-- Varsayılan model: **gemini-2.5-flash**
-- Modeli değiştirmek için:
-```python
-model = genai.GenerativeModel("gemini-2.5-flash")
+## 🔄 Bot Akışı
+
+1. 📅 Tarih aralığını sorar  
+2. ✅ Bu hafta yapılanlar  
+3. 📦 Tamamlanan işler  
+4. 🗓 Haftaya yapılacaklar  
+5. 🧠 Gemini özeti üretir  
+6. 📄 DOCX oluşturur  
+7. ☁️ Google Drive’a yükler  
+8. 🔗 Drive linkini Telegram’dan gönderir  
+
+---
+
+## 📑 Oluşturulan DOCX İçeriği
+
+DOCX dosyasında **sadece Gemini özeti bulunur**:
+
+```
+Haftalık Rapor Özeti
+
+- Tarih Aralığı
+- Öne Çıkanlar
+- Tamamlananlar
+- Önümüzdeki Hafta Planı
 ```
 
 ---
 
-## ✅ Hazırsın!
-Artık botu çalıştırabilir, GitHub’a temiz şekilde pushlayabilir ve eklemeler yapabilirsin.
+## 📂 Proje Yapısı
+
+```
+.
+├── telegram_bot.py
+├── gdrive_upload.py
+├── requirements.txt
+├── .env
+├── credentials.json
+├── .gitignore
+└── README.md
+```
+
+---
+
+## ⚠️ Güvenlik
+
+- `token.json` kesinlikle GitHub’a gönderilmez
+- `.gitignore` içinde otomatik engellenmiştir
+- Yanlışlıkla gönderildiyse geçmiş temizlenmelidir
+
+---
+
+## 👨‍💻 Geliştirici
+
+**dorxuun**
+
+✅ Gemini 2.5 Flash aktiftir  
+✅ DOCX çıktısı aktiftir  
+✅ Google Drive yükleme aktiftir  
+✅ Sistem tam çalışır durumdadır  
